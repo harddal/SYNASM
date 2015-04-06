@@ -25,6 +25,8 @@ Instructions for use:
 
     Format: [CMD] [ARGA], [ARGB]
     
+    It is important that there is whitespace between the [CMD] [ARGA], [ARGB].
+    
     So writing 10 to RAM1 would be:
         DB 0x1, 0xA
  
@@ -42,7 +44,7 @@ Instructions for use:
     
     When using DCO strings can be pretty much any length, but some rules must be followed:
         The first character of every string must be @ to tell the assembler it is a string (will fix in future)
-        All letters you wih to write must be in UPPER case.
+        All letters you write must be in UPPER case (Except escape characters).
         Currently commas are not supported in strings due to my own stupidity (will fix in future).
         
     The DCO supports escape sequences in strings:
