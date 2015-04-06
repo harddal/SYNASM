@@ -12,6 +12,10 @@ Files:
     Utility.h - Header for Utility.cpp
     
     Utility.cpp - Contains functions to convert instructions and arguments to binary
+    
+    adder.asm - Example assembly program, asks for two numbers, adds them, displays the result. Uses DCO strings.
+    
+    SYNASM.exe - Compiled .exe of the code if you do not wish to compile yourself.
   
 Features:
 
