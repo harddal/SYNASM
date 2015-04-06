@@ -17,7 +17,8 @@ Files:
     
     adder.asm - Example assembly program, asks for two numbers, adds them, displays the result. Uses DCO strings.
     
-    SYNASM.exe - Compiled .exe of the code if you do not wish to compile yourself.
+    SYNASM.exe - Compiled .exe of the assembler if you do not wish to compile yourself. Requires MSVC++ 2013 redist
+                 You can get it here: http://www.microsoft.com/en-us/download/details.aspx?id=40784
   
 Features:
 
