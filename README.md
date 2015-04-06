@@ -46,7 +46,7 @@ Instructions for use:
         Currently commas are not supported in strings due to my own stupidity (will fix in future).
         
     The DCO supports escape sequences in strings:
-        DCO "LINE 1 nLINE 2"
+        DCO "@LINE 1 nLINE 2"
     
     This will print "LINE 1" on the first line and "LINE 2" on the second line.
     
