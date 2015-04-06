@@ -61,4 +61,4 @@ Instructions for use:
 
 Compiling:
 
-    This code should compile in anything that supports C++11. I use Visual Studio 2013. The .exe may require the VS2013          redist to run.
+    This code should compile in anything that supports C++11. I use Visual Studio 2013. The .exe may require the VS2013 redist to run.
