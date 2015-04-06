@@ -3,6 +3,8 @@ SYNASM - An assembler for Synergy's 29 bit computer in The Powder Toy.
 
 Link to forum thread: http://powdertoy.co.uk/Discussions/Thread/View.html?Thread=19974&PageNum=0
 
+Note there are some bugs, and no exception handling, so it may crash. Just try again.
+
 Files:
 
     Main.cpp - Main source file
