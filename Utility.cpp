@@ -8,6 +8,27 @@
 
 #include "Utility.h"
 
+void split(const std::string& str, const std::string& delimiters, std::vector<std::string>& tokens)
+{
+	// Skip delimiters at the beginning
+	std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+
+	// Find first non-delimiter
+	std::string::size_type pos = str.find_first_of(delimiters, lastPos);
+
+	while (std::string::npos != pos || std::string::npos != lastPos)
+	{
+		// Found a token, so add it to the vector
+		tokens.push_back(str.substr(lastPos, pos - lastPos));
+
+		// Skip the specified delimiters
+		lastPos = str.find_first_not_of(delimiters, pos);
+
+		// Find the next non-delimiter
+		pos = str.find_first_of(delimiters, lastPos);
+	}
+}
+
 std::string hex_to_bin(std::string in)
 {
 	std::string bin, temp;
@@ -87,23 +108,53 @@ std::string process_string(std::string in, std::vector<std::string> &vec)
 	return in;
 }
 
-void split(const std::string& str, const std::string& delimiters, std::vector<std::string>& tokens)
+std::string process_jump(std::string in, std::vector<std::string> &vec)
 {
-	// Skip delimiters at the beginning
-	std::string::size_type lastPos = str.find_first_not_of(delimiters, 0);
+	std::vector<std::string> tokens;
+	std::string buf, argb;
+	std::stringstream ss(in);
+	
+	while (ss >> buf)
+		tokens.push_back(buf);
 
-	// Find first non-delimiter
-	std::string::size_type pos = str.find_first_of(delimiters, lastPos);
-
-	while (std::string::npos != pos || std::string::npos != lastPos)
+	for (int i = 0; i < tokens.size(); i++)
 	{
-		// Found a token, so add it to the vector
-		tokens.push_back(str.substr(lastPos, pos - lastPos));
+		int pos = tokens[i].find(",");
 
-		// Skip the specified delimiters
-		lastPos = str.find_first_not_of(delimiters, pos);
-
-		// Find the next non-delimiter
-		pos = str.find_first_of(delimiters, lastPos);
+		if (pos != -1)
+			tokens[i].erase(pos);
 	}
+
+	// Add command to stack
+	if (tokens.at(0) == "JNE")
+	{
+		vec.push_back("10111");
+	}
+	else if (tokens.at(0) == "JE")
+	{
+		vec.push_back("11000");
+	}
+	else if (tokens.at(0) == "JMP")
+	{
+		vec.push_back("11001");
+	}
+
+	// Add arga to stack
+	vec.push_back(NUL);
+
+	// Convert argbx and argby to binary
+	std::string argbx = hex_to_bin(tokens.at(1));
+	std::string argby = hex_to_bin(tokens.at(2));
+
+	// Don't use the two least significant bits
+	argb = "00";
+	
+	// Write the correct bit positions
+	argb += argbx.substr(9, 3);
+	argb += argby.substr(5, 7);
+
+	// Add argb to the stack
+	vec.push_back(argb);
+
+	return argb;
 }

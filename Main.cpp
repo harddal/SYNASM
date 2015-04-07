@@ -47,12 +47,18 @@ int main()
 	// Split lines into tokens for assembling
 	while (getline(fin, str))
 	{
+		stringstream ss("");
+		
 		// Remove comments
 		int pos = str.find(";");
 		if (pos != -1)
 			str.erase(str.begin() + pos, str.end());
 
-		stringstream ss("");
+		if (str[0] == 'J')
+		{
+			tokens.push_back(str);
+			continue;
+		}
 
 		// Split commands and arguments by whitespace, strings by quotes
 		for (size_t i = 0; i < str.length(); i++)
@@ -87,7 +93,8 @@ int main()
 		int pos = tokens[i].find(",");
 		int isStr = tokens[i].find("@");
 
-		if (pos != -1 && isStr == -1)
+		// Don't erase the comma in jump commands, process_jump() handles that
+		if (pos != -1 && isStr == -1 && tokens[i][0] != 'J')
 			tokens[i].erase(pos);
 	}
 
@@ -103,6 +110,12 @@ int main()
 		{
 			if (tokens[i] == "DCO") // Don't write DCO bits, process_string() does that
 			{
+				flag = true;
+				break;
+			}
+			if (tokens[i][0] == 'J') // Let process_jump() handle jump commands
+			{
+				process_jump(tokens[i], bin_stack);
 				flag = true;
 				break;
 			}
