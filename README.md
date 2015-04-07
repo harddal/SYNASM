@@ -61,6 +61,11 @@ Instructions for use:
     
     This will print "LINE 1" on the first line and "LINE 2" on the second line.
     
+    The three jump commands have been added (JE, JNE, JMP). To use:
+        JMP X, Y
+    So to make an unconditonal jump to ROM 1x1:
+        JMP 0x1, 0x1
+    
     The escape characters are:
         b - Blows up the computer
         n - Enter/new line
