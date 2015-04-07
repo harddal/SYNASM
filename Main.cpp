@@ -121,6 +121,16 @@ int main()
 		
 	}
 
+	bool error = false;
+
+	if ((bin_stack.size() / 3) > 889)
+	{
+		error = true;
+		cout << "\n\nERROR: Program size exceeded 889 instructions, program was not assembled.";
+		std::cin >> in;
+		return 1;
+	}
+
 	// Get file name to write from previous user input
 	in.erase(in.end() - 3, in.end());
 	in += "sc";
@@ -138,11 +148,7 @@ int main()
 
 	// Display some statistics and tell user file was assembled
 	cout << "\nBinary Instructions: " << bin_stack.size() / 3 << "\nProgram Size: " << (bin_stack.size() / 3) * 29 << " bits";
-
-	if ((bin_stack.size() / 3) > 889)
-		cout << "\n\nERROR: Program size exceeded 889 instructions, program was not assembled.";
-	else
-		cout << "\n\nProgram successfully assembled to file " + in;
+	cout << "\n\nProgram successfully assembled to file " + in;
 
 	std::cin >> in;
 
