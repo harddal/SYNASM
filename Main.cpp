@@ -32,8 +32,17 @@ int main()
 
 	// Open assembly file
 	ifstream fin(in);
-	if (!fin)
-		cout << "Error opening file, check if directory and filename are correct.";
+	while (true)
+	{
+		if (!fin)
+		{
+			cout << "\nError opening file. Enter file to assemble: ";
+			cin >> in;
+			fin.open(in);
+		}
+		else
+			break;
+	}
 
 	// Split lines into tokens for assembling
 	while (getline(fin, str))
@@ -72,12 +81,13 @@ int main()
 		str = "";
 	}
 
-	// Remove commas from the second argument
+	// Remove commas from the second argument, ignoring commas in strings
 	for (int i = 0; i < tokens.size(); i++)
 	{
 		int pos = tokens[i].find(",");
+		int isStr = tokens[i].find("@");
 
-		if (pos != -1)
+		if (pos != -1 && isStr == -1)
 			tokens[i].erase(pos);
 	}
 
@@ -121,11 +131,9 @@ int main()
 		
 	}
 
-	bool error = false;
-
+	// Check if program size exceeds the amount of ROM (889)
 	if ((bin_stack.size() / 3) > 889)
 	{
-		error = true;
 		cout << "\n\nERROR: Program size exceeded 889 instructions, program was not assembled.";
 		std::cin >> in;
 		return 1;
