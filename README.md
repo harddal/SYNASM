@@ -63,6 +63,7 @@ Instructions for use:
     
     The three jump commands have been added (JE, JNE, JMP). To use:
         JMP X, Y
+        
     So to make an unconditonal jump to ROM 1x1:
         JMP 0x1, 0x1
     
