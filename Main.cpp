@@ -138,7 +138,11 @@ int main()
 
 	// Display some statistics and tell user file was assembled
 	cout << "\nBinary Instructions: " << bin_stack.size() / 3 << "\nProgram Size: " << (bin_stack.size() / 3) * 29 << " bits";
-	cout << "\n\nProgram successfully assembled to file " + in;
+
+	if ((bin_stack.size() / 3) > 889)
+		cout << "\n\nERROR: Program size exceeded 889 instructions, program was not assembled.";
+	else
+		cout << "\n\nProgram successfully assembled to file " + in;
 
 	std::cin >> in;
 
