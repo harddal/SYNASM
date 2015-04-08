@@ -158,3 +158,60 @@ std::string process_jump(std::string in, std::vector<std::string> &vec)
 
 	return argb;
 }
+
+void SetTextColor(const char* szColor)
+{
+	HANDLE hHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	if (szColor == "white")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE |
+			FOREGROUND_INTENSITY);
+	}
+	if (szColor == "grey")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+	}
+	if (szColor == "red")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_RED);
+	}
+	if (szColor == "lightred")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_RED | FOREGROUND_INTENSITY);
+	}
+	if (szColor == "green")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_GREEN);
+	}
+	if (szColor == "lightgreen")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	}
+	if (szColor == "blue")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_BLUE);
+	}
+	if (szColor == "lightblue")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+	}
+	if (szColor == "yellow")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_RED | FOREGROUND_GREEN);
+	}
+	if (szColor == "lightyellow")
+	{
+		SetConsoleTextAttribute(hHandle,
+			FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+	}
+}

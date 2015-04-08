@@ -8,6 +8,7 @@
 #include <algorithm>
 #include <fstream>
 #include <iostream>
+#include <stdexcept>
 #include <string>
 #include <sstream>
 #include <vector>
@@ -20,14 +21,17 @@ using namespace std;
 int main()
 {
 	// User input and ifsteam input strings
-	string in, str;
+	bool error = false;
+	int errorcount = 0;
+	string in, filehandle, str;
 
 	// Vector to hold binary instructions and assembly tokens
 	vector<string> bin_stack, tokens;
 
 	// Display text and get user input
-	cout << "--- SYNASM Assembler ---";
-	cout << "\n\nEnter file to assemble: ";
+	SetTextColor("grey");
+	cout << "\n" << "------------------------------ SYNASM Assembler --------------------------------";
+	cout << "\nEnter file to assemble (*.scm): "; 
 	cin >> in;
 
 	// Open assembly file
@@ -36,13 +40,17 @@ int main()
 	{
 		if (!fin)
 		{
-			cout << "\nError opening file. Enter file to assemble: ";
+			cout << "\nError opening file, enter file to assemble: ";
 			cin >> in;
 			fin.open(in);
 		}
 		else
 			break;
 	}
+
+	filehandle = in;
+
+	cout << DASHED_LINE;
 
 	// Split lines into tokens for assembling
 	while (getline(fin, str))
@@ -147,7 +155,10 @@ int main()
 	// Check if program size exceeds the amount of ROM (889)
 	if ((bin_stack.size() / 3) > 889)
 	{
-		cout << "\n\nERROR: Program size exceeded 889 instructions, program was not assembled.";
+		SetTextColor("lightred");
+		cout << "[ERROR] ";
+		SetTextColor("grey");
+		cout << " Program size exceeded 889 instructions, program was not assembled.";
 		std::cin >> in;
 		return 1;
 	}
@@ -163,13 +174,48 @@ int main()
 	// Write the instruction, argument a, argument b
 	for (int i = 0; i < bin_stack.size(); i+=3)
 	{
-		fout << bin_stack[i] << bin_stack[i + 1] << bin_stack[i + 2] << "\n";
+		try
+		{
+			fout << bin_stack.at(i) << bin_stack.at(i + 1) << bin_stack.at(i + 2) << "\n";
+		}
+		catch (const out_of_range& oor)
+		{
+			error = true;
+			errorcount++;
+
+			SetTextColor("lightred");
+			cout << "[ERROR] ";
+			SetTextColor("grey");
+
+			cerr << oor.what() << "\n";
+			cout << " - Cause: Missing or invalid instruction(s) in " << filehandle << "\n\n";
+		}
 	}
 	fout.close();
 
-	// Display some statistics and tell user file was assembled
-	cout << "\nBinary Instructions: " << bin_stack.size() / 3 << "\nProgram Size: " << (bin_stack.size() / 3) * 29 << " bits";
-	cout << "\n\nProgram successfully assembled to file " + in;
+	// Display some statistics
+	SetTextColor("lightgreen");
+	cout << "[INFO]";
+	SetTextColor("grey");
+	cout << " Binary Instructions: " << bin_stack.size() / 3 << "\n";
+	SetTextColor("lightgreen");
+	cout << "[INFO]";
+	SetTextColor("grey");
+	cout << " Program Size: " << (bin_stack.size() / 3) * 29 << " bits";
+
+	// Display the status of the output
+	if (error)
+	{
+		SetTextColor("lightyellow");
+		cout << "\n\n[WARNING]";
+		SetTextColor("grey");
+		cout << " Errors were detected, the assembled file may not function properly\n";
+		cout << "\nProgram assembled to file " + in << " with " << errorcount << " error(s)";
+	}
+	else
+	{
+		cout << "\n\nProgram successfully assembled to file " + in;
+	}
 
 	std::cin >> in;
 

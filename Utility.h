@@ -9,12 +9,17 @@
 #ifndef _UTILITY_H
 #define _UTILITY_H
 
+#define DASHED_LINE "\n--------------------------------------------------------------------------------\n"
+
 #define NUL "000000000000"
 
 #include <iostream>
 #include <string>
 #include <sstream>
 #include <vector>
+
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
 
 #include "LookupTable.h"
 
@@ -29,5 +34,7 @@ std::string process_string(std::string in, std::vector<std::string> &vec);
 
 // For JNE, JE, and JMP
 std::string process_jump(std::string in, std::vector<std::string> &vec);
+
+void SetTextColor(const char* szColor);
 
 #endif
