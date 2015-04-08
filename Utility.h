@@ -13,6 +13,8 @@
 
 #define NUL "000000000000"
 
+#include <algorithm> 
+#include <ctype.h>
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -36,5 +38,7 @@ std::string process_string(std::string in, std::vector<std::string> &vec);
 std::string process_jump(std::string in, std::vector<std::string> &vec);
 
 void SetTextColor(const char* szColor);
+
+bool is_number(const std::string& s);
 
 #endif

@@ -216,3 +216,9 @@ void SetTextColor(const char* szColor)
 			FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 	}
 }
+
+bool is_number(const std::string& s)
+{
+	return !s.empty() && std::find_if(s.begin(),
+		s.end(), [](char c) { return !isdigit(c); }) == s.end();
+}
