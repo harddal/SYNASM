@@ -147,7 +147,7 @@ int main()
 			bin_stack.push_back("000000000010");
 		else if (tokens[i][0] == '@')
 			process_string(tokens[i], bin_stack);
-		else if (tokens[i][1] = 'x')
+		else if (tokens[i][1] = 'x' || tokens.back() == "h")
 			bin_stack.push_back(hex_to_bin(tokens[i]));
 		
 	}

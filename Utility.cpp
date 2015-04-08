@@ -34,13 +34,14 @@ std::string hex_to_bin(std::string in)
 	std::string bin, temp;
 	std::string hex = in;
 
+	int pos = hex.find("h");
+
 	// Remove the x or h from the hex number
 	if (hex[1] == 'x' || hex[1] == 'X')
 		hex.erase(0, 2);
-	else if (hex.find("h") != -1)
+	else if (pos != -1)
 	{
-		int pos = hex.find("h");
-		hex.erase(hex.begin() + pos, hex.end());
+		hex.pop_back();
 	}
 
 	// Convert the hex number to binary
