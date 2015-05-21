@@ -24,7 +24,7 @@ Files:
   
 Features:
 
-    Support for most of the instructions (JE, JNE, and JMP have yet to be implemented)
+    Support for all 31 of the instructions
     
     Can use strings for DCO
     
