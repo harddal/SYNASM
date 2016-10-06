@@ -3,7 +3,7 @@ SYNASM - An assembler for Synergy's 29 bit computer in The Powder Toy.
 
 Link to forum thread: http://powdertoy.co.uk/Discussions/Thread/View.html?Thread=19974&PageNum=0
 
-Note there are some bugs, and no exception handling, so it may crash. Just try again.
+Note that there is no built in detection for syntax errors so it may crash if there are any. I don't plan on improving this project as its use scope is limited.
 
 Files:
 
@@ -28,7 +28,7 @@ Features:
     
     Can use strings for DCO
     
-    Being assembly, easier to write than straight binary
+    Being assembly, it's easier to write than straight binary
   
 Instructions for use:
 
@@ -54,7 +54,7 @@ Instructions for use:
     When using DCO strings can be pretty much any length, but some rules must be followed:
         The first character of every string must be @ to tell the assembler it is a string (will fix in future)
         All letters you write must be in UPPER case (Except escape characters).
-        Currently commas are not supported in strings due to my own stupidity (will fix in future).
+        Currently commas are not supported in strings.
         
     The DCO supports escape sequences in strings:
         DCO "@LINE 1 nLINE 2"
