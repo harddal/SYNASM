@@ -73,7 +73,3 @@ Instructions for use:
         e - CONFIRM button
         c - Clear screen
         f - Filler byte for DCO
-
-Compiling:
-
-    This code should compile in anything that supports C++11. I use Visual Studio 2013. The .exe may require the VS2013 redist to run.
