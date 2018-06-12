@@ -1,4 +1,6 @@
 # SYNASM
+![alt text](https://i.imgur.com/0X192sZ.png)
+
 SYNASM - An assembler for Synergy's 29 bit computer in The Powder Toy.
 
 Link to forum thread: http://powdertoy.co.uk/Discussions/Thread/View.html?Thread=19974&PageNum=0
