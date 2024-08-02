@@ -75,3 +75,6 @@ Instructions for use:
         e - CONFIRM button
         c - Clear screen
         f - Filler byte for DCO
+
+
+Use the included Lua file to load the binary program into TPT.
