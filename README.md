@@ -77,6 +77,6 @@ Instructions for use:
         f - Filler byte for DCO
 
 
-Use the included Lua file to load the binary program into TPT (might be currently broken in the newest versions of TPT ? but I am working on it).
+Use the included Lua file to load the binary program into TPT (might be currently partially broken in the newest versions of TPT but I am working on it).
 
 Credit to Procybit for a guide on how to calculate the JMP commands: https://tpt.io/.320432
