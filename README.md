@@ -78,3 +78,5 @@ Instructions for use:
 
 
 Use the included Lua file to load the binary program into TPT.
+
+Credit to Procybit for a guide on how to calculate the JMP commands: https://tpt.io/.320432
